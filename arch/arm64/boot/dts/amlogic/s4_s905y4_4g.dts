@@ -1,0 +1,23 @@
+#include "s4_s905y4_2g.dts"
+
+/ {
+	amlogic-dt-id = "s4_s905y4_4g";
+
+	memory@00000000 {
+		linux,usable-memory = <0x0 0x000000 0x0 0xf1000000>;
+	};
+	
+	amhdmitx: amhdmitx{
+		vend_data: vend_data{ /* Should modified by Customer */
+			product_desc = "Hixpi"; /* Max Chars: 16 */
+		};
+	};
+};
+
+&drm_vpu {
+	logo_addr = "0xf0800000";
+};
+
+&usb3_phy_v2 {
+	otg = <0>;
+};

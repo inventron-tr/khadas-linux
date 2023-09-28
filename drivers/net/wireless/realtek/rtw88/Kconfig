@@ -15,6 +15,12 @@ config RTW88_CORE
 
 config RTW88_PCI
 	tristate
+	
+config RTW88_SDIO
+	tristate
+		
+config RTW88_8821C
+	tristate
 
 config RTW88_8822BE
 	bool "Realtek 8822BE PCI wireless network adapter"
@@ -51,5 +57,16 @@ config RTW88_DEBUGFS
 	  Enable debug support
 
 	  If unsure, say Y to simplify debug problems
+
+config RTW88_8821CS
+	tristate "Realtek 8821CS SDIO wireless network adapter"
+	depends on MMC
+	select RTW88_CORE
+	select RTW88_SDIO
+	select RTW88_8821C
+	help
+	  Select this option will enable support for 8821CS chipset
+
+	  802.11ac SDIO wireless network adapter
 
 endif

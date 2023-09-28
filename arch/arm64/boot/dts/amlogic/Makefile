@@ -1,4 +1,2 @@
 # SPDX-License-Identifier: GPL-2.0
-dtb-y += kvim4.dtb
-dtb-y += kvim4n.dtb
-dtb-y += kvim1s.dtb
+dtb-y += s4_s905y4_4g.dtb
