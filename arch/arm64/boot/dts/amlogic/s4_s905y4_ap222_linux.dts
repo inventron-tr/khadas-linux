@@ -56,7 +56,8 @@
 			record-size = <0x20000>;
 			console-size = <0x40000>;
 			ftrace-size = <0x80000>;
-			pmsg-size = <0x20000>;
+			pmsg-size = <0x10000>;
+			bconsole-size = <0x10000>;
 		};
 
 		secmon_reserved:linux,secmon {
@@ -85,7 +86,7 @@
 			compatible = "shared-dma-pool";
 			reusable;
 			/* 1920x1080x4x3 round up 4M align */
-			size = <0x0 0x0000000>;
+			size = <0x0 0x10000000>;
 			alignment = <0x0 0x400000>;
 		};
 		/*di CMA pool */
@@ -107,7 +108,7 @@
 		/*  POST PROCESS MANAGER */
 		ppmgr_reserved:linux,ppmgr {
 			compatible = "shared-dma-pool";
-			size = <0x0>;
+			//size = <0x0>;
 		};
 
 		codec_mm_cma:linux,codec_mm_cma {
@@ -147,6 +148,23 @@
 			size = <0x0 0x01400000>;
 			alignment = <0x0 0x400000>;
 		};
+
+		/* demod_reserved:linux,demod {
+		 *	compatible = "amlogic, demod-mem";
+		 *	size = <0x0 0x6400000>; //8M //100m 0x6400000
+		 *	alloc-ranges = <0x0 0x0 0x0 0x30000000>;
+		 *	//multi-use;
+		 *	//no-map;
+		 * };
+		 */
+
+		demod_cma_reserved:linux,demod_cma {
+			compatible = "shared-dma-pool";
+			reusable;
+			/* 20M */
+			size = <0x0 0x0>;
+			alignment = <0x0 0x400000>;
+		};
 	};
 	codec_mm {
 		compatible = "amlogic, codec, mm";
@@ -162,7 +180,7 @@
 	};
 	cvbsout {
 		compatible = "amlogic, cvbsout-s4";
-		status = "okay";
+		status = "disabled";
 
 		/* clk path */
 		/* 0:vid_pll vid2_clk */
@@ -199,7 +217,7 @@
 	dvb-extern {
 		compatible = "amlogic, dvb-extern";
 		dev_name = "dvb-extern";
-		status = "okay";
+		status = "disabled";
 
 		/* dvb hardware main power. */
 		dvb_power_gpio = <&gpio GPIOZ_5 GPIO_ACTIVE_HIGH>;
@@ -259,7 +277,7 @@
 	dvb-demux {
 		compatible = "amlogic sc2, dvb-demux";
 		dev_name = "dvb-demux";
-		status = "okay";
+		status = "disabled";
 
 		reg = <0x0 0xfe000000 0x0 0x480000>;
 
@@ -355,7 +373,7 @@
 	aml_dtv_demod {
 		compatible = "amlogic, ddemod-s4";
 		dev_name = "aml_dtv_demod";
-		status = "okay";
+		status = "disabled";
 		/* diseqc_name = "sgm_41286"; */
 		pinctrl-names="if_agc_pins", "if_agc2_pins";
 		pinctrl-0=<&dtvdemod_if_agc_pins>;
@@ -1522,7 +1540,7 @@
 };
 
 &drm_amcvbsout {
-	status = "okay";
+	status = "disabled";
 };
 
 &drm_lcd {

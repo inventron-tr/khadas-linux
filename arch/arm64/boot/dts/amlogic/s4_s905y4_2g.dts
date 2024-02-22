@@ -1,4 +1,5 @@
 #include "s4_s905y4_ap222_linux.dts"
+/*include "coreelec_s4_common.dtsi"*/
 
 / {
 	model = "Amlogic";
